@@ -9,7 +9,10 @@ const userShcema = require("../src/userShcema.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-const sequelize = new Sequelize(process.env.POSTGRES_URI_TEST, {});
+let POSTGRES_URI_TEST =
+  process.env.POSTGRES_URI_TEST ||
+  "postgres://postgres:0000@localhost:5432/testbearer";
+const sequelize = new Sequelize(POSTGRES_URI_TEST, {});
 
 const Users = userShcema(sequelize, DataTypes);
 
